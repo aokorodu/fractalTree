@@ -888,7 +888,7 @@ class App {
 
   generateAngles(num) {
     for (let i = 0; i < num; i++) {
-      this.angles.push((Math.random() * this.tau / 5) - this.tau / 10);
+      this.angles.push((Math.random() * this.tau / 4) - this.tau / 8);
     }
   }
 
