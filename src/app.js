@@ -1,3 +1,5 @@
+import Perlin from 'perlin.js';
+
 export class App {
   constructor() {
     this.tau = Math.PI * 2;
@@ -13,12 +15,18 @@ export class App {
     this.breezeAngle = 0;
     this.sineAngle = 0;
     this.startLength;
+    this.perlinTracker = 0;
   }
 
   init() {
     this.initProps();
     this.initCanvas();
+    this.initNoise();
     this.generateAngles(this.numAngles);
+  }
+
+  initNoise(){
+    Perlin.seed(Math.random());
   }
 
   initProps() {
@@ -32,6 +40,7 @@ export class App {
     this.canvas.width = this.w;
     this.canvas.height = this.h;
     this.c = this.canvas.getContext('2d');
+    this.c.strokeStyle = 'rgba(220, 220, 220, 0.6)';
   }
 
   generateAngles(num) {
@@ -43,9 +52,17 @@ export class App {
   getAngle() {
     const angle = this.angles[this.angleIndex++];
     if (this.angleIndex >= this.numAngles) this.angleIndex = 0;
-    this.breezeAngle = this.breezeAngleMax * Math.sin(this.sineAngle);
+    this.breezeAngle = this.getMaxAngle() * Math.sin(this.sineAngle);
     this.sineAngle += 0.00001;
+    this.getMaxAngle();
     return angle + this.breezeAngle;
+  }
+
+  getMaxAngle(){
+    let val = Perlin.simplex2(1, this.perlinTracker);
+    this.perlinTracker += .0000001;
+
+    return this.breezeAngleMax * val;
   }
 
   drawCircle(x, y, r) {
@@ -90,17 +107,21 @@ export class App {
     this.drawBranch(l * factor / 2);
     this.c.restore();
   }
-  
+
   draw() {
     this.c.clearRect(0, 0, this.w, this.h);
     this.angleIndex = 0;
-    this.c.save();
-    this.c.translate(this.w / 2, this.h);
-    this.c.strokeStyle = 'rgba(255, 255, 255, 0.6)';
-    this.drawBranch(this.startLength);
-    this.c.restore();
+    this.drawTree(this.w / 2, this.h, this.startLength);
+    this.drawTree(this.w / 2, this.h, this.startLength/4);
     requestAnimationFrame(() => {
       this.draw()
     });
+  }
+
+  drawTree(x, y, l){
+    this.c.save();
+    this.c.translate(x, y);
+    this.drawBranch(l);
+    this.c.restore();
   }
 }
