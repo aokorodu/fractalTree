@@ -37,9 +37,12 @@ export class App {
 
   initCanvas() {
     this.canvas = document.querySelector('canvas');
-    this.canvas.width = this.w;
-    this.canvas.height = this.h;
+    this.canvas.width = this.w*2;
+    this.canvas.height = this.h*2;
+    this.canvas.style.width = `${this.w}px`;
+    this.canvas.style.height = `${this.h}px`;
     this.c = this.canvas.getContext('2d');
+    this.c.scale(2,2);
     this.c.strokeStyle = 'rgba(220, 220, 220, 0.6)';
   }
 
