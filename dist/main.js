@@ -101,7 +101,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(false);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "* {\n  box-sizing: border-box; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  overflow: hidden; }\n\n#canvas {\n  border: 1px solid black;\n  background-color: #2b2b2b; }\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.i, "* {\n  box-sizing: border-box; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  overflow: hidden; }\n\n#canvas {\n  border: 1px solid black;\n  background-color: #1c1c1c; }\n", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -871,7 +871,7 @@ class App {
 
   initProps() {
     this.w = window.innerWidth;
-    this.h = window.innerHeight;
+    this.h = window.screen.availHeight;
     this.startLength = this.h / 4;
   }
 

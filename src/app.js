@@ -31,7 +31,7 @@ export class App {
 
   initProps() {
     this.w = window.innerWidth;
-    this.h = window.innerHeight;
+    this.h = window.screen.availHeight;
     this.startLength = this.h / 4;
   }
 
