@@ -5,7 +5,7 @@ export class App {
     this.tau = Math.PI * 2;
     this.w = window.innerWidth;
     this.h = window.innerHeight;
-    this.startLength = this.h / 5;
+    this.startLength = this.h / 6;
     this.lengthFactor = .7;
     this.angles = [];
     this.numAngles = 10000;
