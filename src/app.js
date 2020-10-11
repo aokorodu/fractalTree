@@ -3,14 +3,15 @@ import Perlin from 'perlin.js';
 export class App {
   constructor() {
     this.tau = Math.PI * 2;
-    this.w;
-    this.h;
+    this.w = window.innerWidth;
+    this.h = window.innerHeight;
+    this.startLength = this.h / 5;
+    this.lengthFactor = .7;
     this.angles = [];
     this.numAngles = 10000;
     this.angleIndex = 0;
     this.canvas;
     this.c;
-    this.startLength;
 
     this.breezeMax = this.tau/40;
     this.breeze = this.breezeMax;
@@ -44,9 +45,7 @@ export class App {
   }
 
   initProps() {
-    this.w = window.innerWidth;
-    this.h = window.innerHeight;
-    this.startLength = this.h / 8;
+    
   }
 
   initCanvas() {
@@ -76,8 +75,7 @@ export class App {
   }
 
   drawBranch(l) {
-    const factor = .77;//.5 + Math.random() * .3;
-    if (l < 20) {
+    if (l < 15) {
       l = 5;
       this.c.save();
       this.c.strokeStyle = this.getColor(); //Math.random() > .5 ? this.fruitColor : this.greenLeafColor;
@@ -93,22 +91,22 @@ export class App {
     if (l < 10) return;
     this.c.beginPath();
     this.c.lineCap = "round";
-    this.c.lineWidth = l / 8;
+    this.c.lineWidth = l / 10;
     this.c.moveTo(0, 0);
     this.c.lineTo(0, -l);
     this.c.stroke();
     this.c.translate(0, -l);
     this.c.save();
     this.c.rotate(this.getAngle() + (Math.sin(this.sinAngle) * this.breeze));
-    this.drawBranch(l * factor);
+    this.drawBranch(l * this.lengthFactor);
     this.c.restore();
     this.c.save();
     this.c.rotate(-this.getAngle()+ (Math.sin(this.sinAngle) * this.breeze));
-    this.drawBranch(l * factor);
+    this.drawBranch(l * this.lengthFactor);
     this.c.restore();
     this.c.save();
     this.c.rotate(this.getAngle()+ (Math.sin(this.sinAngle) * this.breeze));
-    this.drawBranch(l * .6);
+    this.drawBranch(l * this.lengthFactor * .8);
     this.c.restore();
   }
 
@@ -116,7 +114,7 @@ export class App {
     this.updateBreeze();
     this.c.clearRect(0, 0, this.w, this.h);
     this.angleIndex = 0;
-    this.drawTree(this.w / 2, this.h, this.startLength);
+    this.drawTree(this.w / 2, this.h * .8, this.startLength);
     //this.drawTree(this.w / 2 + 20, this.h, this.startLength / 2);
     //this.drawTree(this.w / 2 - 20, this.h, this.startLength / 3);
     requestAnimationFrame(() => {
