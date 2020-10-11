@@ -11,7 +11,7 @@ export class App {
     this.angleIndex = 0;
     this.canvas;
     this.c;
-    this.breezeAngleMax = this.tau / 200;
+    this.breezeAngleMax = this.tau / 20;
     this.breezeAngle = 0;
     this.sineAngle = 0;
     this.startLength;
@@ -31,8 +31,8 @@ export class App {
 
   initProps() {
     this.w = window.innerWidth;
-    this.h = window.screen.availHeight;
-    this.startLength = this.h / 4;
+    this.h = window.innerHeight;
+    this.startLength = this.h / 8;
   }
 
   initCanvas() {
@@ -43,7 +43,7 @@ export class App {
     this.canvas.style.height = `${this.h}px`;
     this.c = this.canvas.getContext('2d');
     this.c.scale(2,2);
-    this.c.strokeStyle = 'rgba(220, 220, 220, 0.6)';
+    this.c.strokeStyle = 'rgba(120,71,54, 0.6)';
   }
 
   generateAngles(num) {
@@ -63,7 +63,7 @@ export class App {
 
   getMaxAngle(){
     let val = Perlin.simplex2(1, this.perlinTracker);
-    this.perlinTracker += .0000001;
+    this.perlinTracker += .00001;
 
     return this.breezeAngleMax * val;
   }
@@ -87,12 +87,25 @@ export class App {
   }
 
   drawBranch(l) {
-    const factor = .72;//.5 + Math.random() * .3;
+    const factor = .75;//.5 + Math.random() * .3;
+    if(l < 20){
+      l = 5;
+      this.c.save();
+      this.c.strokeStyle = 'rgba(0, 255, 0, 0.3)';
+      this.c.beginPath();
+      this.c.lineCap = "round";
+      this.c.lineWidth = 10;
+      this.c.moveTo(0, 0);
+      this.c.lineTo(0, -l);
+      this.c.stroke();
+      this.c.restore();
+      return;
+    }
     if (l < 10) return;
     this.branchCount++;
     this.c.beginPath();
     this.c.lineCap = "round";
-    this.c.lineWidth = l / 40;
+    this.c.lineWidth = l / 20;
     this.c.moveTo(0, 0);
     this.c.lineTo(0, -l);
     this.c.stroke();
@@ -107,7 +120,7 @@ export class App {
     this.c.restore();
     this.c.save();
     this.c.rotate(this.getAngle());
-    this.drawBranch(l * factor / 2);
+    this.drawBranch(l * .5);
     this.c.restore();
   }
 
