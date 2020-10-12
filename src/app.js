@@ -5,7 +5,7 @@ export class App {
     this.tau = Math.PI * 2;
     this.w = window.innerWidth;
     this.h = window.innerHeight;
-    this.startLength = this.h / 6;
+    this.startLength = this.h / 8;
     this.lengthFactor = .7;
     this.angles = [];
     this.numAngles = 10000;
@@ -36,9 +36,19 @@ export class App {
   init() {
     this.initProps();
     this.initCanvas();
+    this.initSlider();
     this.initNoise();
     this.generateAngles(this.numAngles);
   }
+
+  initSlider() {
+    const slider = document.getElementById('lengthSlider')
+    slider.addEventListener('input', (e)=>{
+      console.log('input', e.target.value);
+      this.startLength = this.h/4 * e.target.value/100;
+      this.breeze = this.breezeMax;
+    })
+}
 
   initNoise() {
     Perlin.seed(Math.random());
