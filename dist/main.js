@@ -101,7 +101,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(false);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "* {\n  box-sizing: border-box; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  overflow: hidden;\n  background-color: #1c1c1c; }\n\n#canvas {\n  position: absolute;\n  top: 50px;\n  border: 1px solid black; }\n\n#sliders {\n  position: relative; }\n\n.slider {\n  position: absolute;\n  appearance: none;\n  width: 100%;\n  height: 25px;\n  background-color: grey; }\n\n.slider::-webkit-slider-thumb {\n  appearance: none;\n  width: 25px;\n  height: 25px;\n  background-color: white; }\n\n.slider::-moz-range-thumb {\n  appearance: none;\n  width: 25px;\n  height: 25px;\n  background-color: white; }\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.i, "* {\n  box-sizing: border-box; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  overflow: hidden;\n  background-color: #1c1c1c; }\n\n#canvas {\n  position: absolute;\n  border: 1px solid black;\n  pointer-events: none; }\n\n#sliders {\n  position: relative; }\n\n.slider {\n  position: absolute;\n  appearance: none;\n  width: 100%;\n  height: 25px;\n  background-color: grey; }\n\n.slider::-webkit-slider-thumb {\n  appearance: none;\n  width: 25px;\n  height: 25px;\n  background-color: white; }\n\n.slider::-moz-range-thumb {\n  appearance: none;\n  width: 25px;\n  height: 25px;\n  background-color: white; }\n", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
