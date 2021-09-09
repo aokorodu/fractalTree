@@ -111,7 +111,7 @@ export class App {
     this.drawBranch(l * this.lengthFactor);
     this.c.restore();
     this.c.save();
-    this.c.rotate(-this.getAngle()+ (Math.sin(this.sinAngle) * this.breeze));
+    this.c.rotate(-this.getAngle()+ (Math.cos(this.sinAngle) * this.breeze));
     this.drawBranch(l * this.lengthFactor);
     this.c.restore();
     this.c.save();
